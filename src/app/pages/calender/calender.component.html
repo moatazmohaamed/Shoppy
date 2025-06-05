@@ -1,0 +1,43 @@
+<!-- scheduler.component.html -->
+<div
+  class="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl"
+>
+  <app-header category="App" title="Calendar"></app-header>
+
+  <ejs-schedule
+    #scheduleObj
+    height="650px"
+    [selectedDate]="selectedDate"
+    [eventSettings]="eventSettings"
+    [currentView]="currentView"
+    (dragStart)="onDragStart($event)"
+  >
+    <e-views>
+      <e-view option="Day"></e-view>
+      <e-view option="Week"></e-view>
+      <e-view option="WorkWeek"></e-view>
+      <e-view option="Month"></e-view>
+      <e-view option="Agenda"></e-view>
+    </e-views>
+  </ejs-schedule>
+
+  <div class="mt-5">
+    <table style="width: 100%; background: white">
+      <tbody>
+        <tr style="height: 50px">
+          <td style="width: 100%">
+            <ejs-datepicker
+              #datePickerObj
+              [value]="selectedDate"
+              [showClearButton]="false"
+              placeholder="Current Date"
+              floatLabelType="Always"
+              (change)="onChange($event)"
+            >
+            </ejs-datepicker>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

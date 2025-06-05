@@ -1,0 +1,62 @@
+<div
+  class="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl"
+>
+  <app-header category="Charts" title="Stacking Line"></app-header>
+  <div class="w-[100%] m-auto">
+    <ejs-chart
+      style="display: block"
+      [chartArea]="chartArea"
+      align="center"
+      id="chartcontainer"
+      [primaryXAxis]="primaryXAxis"
+      [primaryYAxis]="primaryYAxis"
+      [title]="title"
+      [subTitle]="subTitle"
+      [tooltip]="tooltip"
+      [legendSettings]="legend"
+    >
+      <e-series-collection>
+        <e-series
+          [dataSource]="chartData1"
+          type="StackingLine"
+          xName="x"
+          yName="y"
+          name="Wind"
+          width="2"
+          [marker]="marker"
+        >
+        </e-series>
+        <e-series
+          [dataSource]="chartData2"
+          type="StackingLine"
+          xName="x"
+          yName="y"
+          name="Bio mass"
+          width="2"
+          [marker]="marker1"
+        >
+        </e-series>
+        <e-series
+          [dataSource]="chartData3"
+          type="StackingLine"
+          xName="x"
+          yName="y"
+          name="Small Hydro"
+          width="2"
+          [marker]="marker2"
+        >
+        </e-series>
+        <e-series
+          [dataSource]="chartData4"
+          type="StackingLine"
+          xName="x"
+          yName="y"
+          name="Solar"
+          width="2"
+          [marker]="marker3"
+        >
+        </e-series>
+      </e-series-collection>
+    </ejs-chart>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<!-- area-chart.component.html -->
+<div
+  class="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl"
+>
+  <app-header category="Charts" title="Area  "></app-header>
+  <div class="w-full">
+    <ejs-chart
+      id="charts"
+      [primaryXAxis]="primaryXAxis"
+      [primaryYAxis]="primaryYAxis"
+      [chartArea]="chartArea"
+      [legendSettings]="{ background: 'white' }"
+    >
+      <e-series-collection>
+        @for (series of customSeries; track series.name) {
+        <e-series
+          [dataSource]="series.dataSource"
+          [xName]="series.xName"
+          [yName]="series.yName"
+          [name]="series.name"
+          [width]="series.width"
+          [opacity]="series.opacity"
+          [type]="series.type"
+          [marker]="series.marker"
+        ></e-series>
+        }
+      </e-series-collection>
+    </ejs-chart>
+  </div>
+</div>

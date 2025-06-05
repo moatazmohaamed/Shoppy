@@ -1,0 +1,54 @@
+<div
+  class="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl w-[95%]"
+>
+  <app-header category="Charts" title="Color Mapping"></app-header>
+  <div>
+    <ejs-chart
+      id="chartcontainer"
+      [chartArea]="chartArea"
+      align="center"
+      style="display: block"
+      [title]="title"
+      [primaryXAxis]="primaryXAxis"
+      [primaryYAxis]="primaryYAxis"
+      [legendSettings]="legendSettings"
+      [tooltip]="tooltip"
+      [highlightMode]="highlightMode"
+      [highlightPattern]="highlightPattern"
+    >
+      <e-series-collection>
+        <e-series
+          [dataSource]="data1"
+          type="Column"
+          xName="x"
+          yName="y"
+          name="USA"
+          [animation]="animation"
+          [cornerRadius]="cornerRadius"
+          [marker]="marker"
+        >
+        </e-series>
+      </e-series-collection>
+      <e-rangecolorsettings>
+        <e-rangecolorsetting
+          label="1°C to 10°C"
+          start="1"
+          end="10"
+          [colors]="colors1"
+        ></e-rangecolorsetting>
+        <e-rangecolorsetting
+          label="11°C to 20°C"
+          start="11"
+          end="20"
+          [colors]="colors2"
+        ></e-rangecolorsetting>
+        <e-rangecolorsetting
+          label="21°C to 30°C"
+          start="21"
+          end="30"
+          [colors]="colors3"
+        ></e-rangecolorsetting>
+      </e-rangecolorsettings>
+    </ejs-chart>
+  </div>
+</div>

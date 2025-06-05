@@ -1,0 +1,62 @@
+<div
+  class="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl"
+>
+  <app-header category="Page" title="Orders"></app-header>
+
+  <ejs-grid
+    id="gridcomp"
+    [dataSource]="ordersData"
+    [allowPaging]="true"
+    [allowSorting]="true"
+    [allowExcelExport]="true"
+    [allowPdfExport]="true"
+    [contextMenuItems]="contextMenu"
+    [editSettings]="editSettings"
+    [pageSettings]="pageSettings"
+  >
+    <e-columns>
+      <e-column headerText="Product Image" width="150">
+        <ng-template #template let-data>
+          <div class="image-container">
+            <img
+              class="w-24 h-20"
+              [src]="data.ProductImage"
+              alt="Product"
+              onError="this.src='assets/images/default-product.png'"
+            />
+          </div>
+        </ng-template>
+      </e-column>
+      <e-column field="OrderID" headerText="Order ID" width="100"></e-column>
+      <e-column
+        field="CustomerName"
+        headerText="Customer Name"
+        width="120"
+      ></e-column>
+      <e-column
+        field="TotalAmount"
+        headerText="Total Amount"
+        width="100"
+        textAlign="Right"
+      ></e-column>
+      <e-column
+        field="OrderItems"
+        headerText="Order Items"
+        width="120"
+      ></e-column>
+      <e-column field="Location" headerText="Location" width="100"></e-column>
+      <e-column
+        class="bg-black"
+        field="Status"
+        headerText="Status"
+        width="100"
+      ></e-column>
+      <e-column
+        field="StatusColor"
+        headerText="Status Color"
+        width="100"
+        [visible]="false"
+      ></e-column>
+    </e-columns>
+  </ejs-grid>
+</div>

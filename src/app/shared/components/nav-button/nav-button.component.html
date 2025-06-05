@@ -1,0 +1,7 @@
+<button type="button" [title]="title" [style.color]="color" (click)="buttonClick.emit()"
+  class="text-xl rounded-full p-3 hover:bg-light-gray relative">
+  <ng-content></ng-content>
+  @if (dotColor) {
+  <span class="absolute inline-flex rounded-full h-2 w-2 top-2 right-2" [style.background-color]="dotColor"></span>
+  }
+</button>

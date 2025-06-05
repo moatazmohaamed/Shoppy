@@ -1,0 +1,44 @@
+<div class="flex justify-between p-2 md:ml-6 md:mr-6 relative">
+  <app-nav-button [color]="navbarService.currentColor" (buttonClick)="toggleMenu()">
+    <lucide-icon class="text-gray-400 text-14" [name]='Menu'></lucide-icon>
+  </app-nav-button>
+
+  <div class="flex">
+    <app-nav-button [color]="navbarService.currentColor" (buttonClick)="handleClick('cart')">
+      <lucide-icon class="text-gray-400 text-14" [name]='ShoppingCart'></lucide-icon>
+    </app-nav-button>
+
+    <app-nav-button dotColor="#03C9D7" [color]="navbarService.currentColor" (buttonClick)="handleClick('chat')">
+      <lucide-icon class="text-gray-400 text-14" [name]='MessageCircle'></lucide-icon>
+    </app-nav-button>
+
+    <app-nav-button dotColor="rgb(254, 201, 15)" [color]="navbarService.currentColor"
+      (buttonClick)="handleClick('notification')">
+      <lucide-icon class="text-gray-400 text-14" [name]='Bell'></lucide-icon>
+    </app-nav-button>
+
+    <!-- Profile -->
+    <div class="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
+      (click)="handleClick('userProfile')">
+      <img class="rounded-full w-8 h-8" src="avatar.jpg" alt="user-profile" />
+      <p>
+        <span class="text-gray-400 text-14">Hi,</span>
+        <span class="text-gray-400 font-bold ml-1 text-14">Michael</span>
+      </p>
+    </div>
+
+    <!-- Conditional components -->
+    @if (navbarService.isClicked.cart) {
+    <app-cart></app-cart>
+    }
+    @if (navbarService.isClicked.chat) {
+    <app-chat></app-chat>
+    }
+    @if (navbarService.isClicked.notification) {
+    <app-notification></app-notification>
+    }
+    @if (navbarService.isClicked.userProfile) {
+    <app-user-profile></app-user-profile>
+    }
+  </div>
+</div>

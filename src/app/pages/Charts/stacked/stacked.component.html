@@ -1,0 +1,22 @@
+<div>
+  <ejs-chart
+    [id]="'charts'"
+    [primaryXAxis]="primaryXAxis"
+    [primaryYAxis]="primaryYAxis"
+    [chartArea]="{ border: { width: 0 } }"
+    [tooltip]="{ enable: true }"
+    [background]="chartBackground"
+    [legendSettings]="{ background: 'white' }"
+  >
+    <e-series-collection>
+      <e-series
+        *ngFor="let item of stackedCustomSeries"
+        [dataSource]="item.dataSource"
+        type="StackingColumn"
+        xName="x"
+        yName="y"
+        name="{{ item.name }}"
+      ></e-series>
+    </e-series-collection>
+  </ejs-chart>
+</div>

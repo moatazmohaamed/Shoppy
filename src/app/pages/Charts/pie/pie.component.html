@@ -1,0 +1,40 @@
+<!-- pie-chart.component.html -->
+<div
+  class="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl"
+>
+  <app-header category="Charts" title="Pie"></app-header>
+
+  <div class="control-section">
+    <div>
+      <ejs-accumulationchart
+        id="donut-container"
+        [title]="title"
+        align="center"
+        [legendSettings]="legendSettings"
+        [tooltip]="tooltip"
+        [annotations]="annotations"
+        [enableBorderOnMouseMove]="false"
+        (pointRender)="pointRender($event)"
+      >
+        <e-accumulation-series-collection>
+          <e-accumulation-series
+            name="Revenue"
+            [dataSource]="data"
+            xName="x"
+            [startAngle]="startAngle"
+            yName="y"
+            [radius]="radius"
+            [innerRadius]="innerRadius"
+            [dataLabel]="dataLabel"
+          >
+          </e-accumulation-series>
+        </e-accumulation-series-collection>
+      </ejs-accumulationchart>
+    </div>
+  </div>
+  <style>
+    .control-section {
+      min-height: 450px;
+    }
+  </style>
+</div>

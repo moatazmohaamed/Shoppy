@@ -1,0 +1,404 @@
+<div
+  class="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl"
+>
+  <app-header category="Charts" title="Weather Forecast"></app-header>
+  <div>
+    <ejs-chart
+      id="container"
+      #chart
+      [chartArea]="chartArea"
+      style="display: block"
+      [primaryXAxis]="primaryXAxis"
+      [primaryYAxis]="primaryYAxis"
+      (resized)="onResized($event)"
+      (chartMouseClick)="onChartMouseClick($event)"
+      [legendSettings]="legendSettings"
+      (annotationRender)="annotationRender($event)"
+      [annotations]="annotations"
+      [zoomSettings]="zoomSettings"
+      height="70%"
+    >
+      <e-series-collection>
+        <e-series
+          [dataSource]="chartData"
+          type="SplineArea"
+          xName="xValue"
+          yName="y"
+          opacity="0.5"
+          width="2"
+          [marker]="marker"
+          [border]="border"
+        >
+        </e-series>
+      </e-series-collection>
+    </ejs-chart>
+  </div>
+  <div id="chart-button-container" class="w-50 m-auto">
+    <button
+      id="friday"
+      class="chart-custom-button active"
+      (click)="
+        onClick(
+          'friday',
+          'sunny_image',
+          12,
+          'Friday',
+          0,
+          0.175,
+          0,
+          30,
+          5,
+          'Sunny'
+        )
+      "
+    >
+      <div class="day">Friday</div>
+      <img src="./assets/chart/images/sunny_image.png" alt="Friday" />
+      <div class="temp">2°C - 12°C</div>
+    </button>
+    <button
+      id="saturday"
+      class="chart-custom-button"
+      (click)="
+        onClick(
+          'saturday',
+          'sunny_image',
+          16,
+          'Saturday',
+          0.206,
+          0.175,
+          0,
+          35,
+          6,
+          'Sunny'
+        )
+      "
+    >
+      <div class="day">Saturday</div>
+      <img src="./assets/chart/images/sunny_image.png" alt="Saturday" />
+      <div class="temp">6°C - 16°C</div>
+    </button>
+    <button
+      id="sunday"
+      class="chart-custom-button"
+      (click)="
+        onClick(
+          'sunday',
+          'cloudy',
+          18,
+          'Sunday',
+          0.413,
+          0.175,
+          1,
+          40,
+          4,
+          'Cloudy'
+        )
+      "
+    >
+      <div class="day">Sunday</div>
+      <img src="./assets/chart/images/cloudy.png" alt="Sunday" />
+      <div class="temp">15°C - 18°C</div>
+    </button>
+    <button
+      id="monday"
+      class="chart-custom-button"
+      (click)="
+        onClick(
+          'monday',
+          'cloudy',
+          16,
+          'Monday',
+          0.62,
+          0.175,
+          2,
+          45,
+          5,
+          'Cloudy'
+        )
+      "
+    >
+      <div class="day">Monday</div>
+      <img src="./assets/chart/images/cloudy.png" alt="Monday" />
+      <div class="temp">12°C - 16°C</div>
+    </button>
+    <button
+      id="tuesday"
+      class="chart-custom-button"
+      (click)="
+        onClick(
+          'tuesday',
+          'rainy',
+          18,
+          'Tuesday',
+          0.827,
+          0.175,
+          5,
+          50,
+          6,
+          'Rainy'
+        )
+      "
+    >
+      <div class="day">Tuesday</div>
+      <img src="./assets/chart/images/rainy.png" alt="Tuesday" />
+      <div class="temp">14°C - 18°C</div>
+    </button>
+  </div>
+  <svg style="height: 0">
+    <defs>
+      <linearGradient
+        id="material-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="fabric-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="bootstrap-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="bootstrap4-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="highcontrast-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="tailwind-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="bootstrap5-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="materialdark-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="fabricdark-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="bootstrapdark-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="tailwinddark-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="tailwind3-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="tailwind3dark-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="bootstrap5dark-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="fluent-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="fluentdark-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="material3-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="material3dark-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="fluent2-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="fluent2highcontrast-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+      <linearGradient
+        id="fluent2dark-gradient-chart"
+        style="opacity: 0.75"
+        class="chart-gradient"
+        x1="0"
+        x2="0"
+        y1="0"
+        y2="1"
+      >
+        <stop offset="0"></stop>
+        <stop offset="1"></stop>
+      </linearGradient>
+    </defs>
+  </svg>
+</div>

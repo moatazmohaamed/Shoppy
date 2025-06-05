@@ -1,0 +1,11 @@
+<ejs-chart id="line-chart" style="display: block;" [height]="'420px'" [primaryXAxis]="LinePrimaryXAxis"
+  [primaryYAxis]="LinePrimaryYAxis" [chartArea]="chartArea" [tooltip]="tooltip" [background]="background"
+  [legendSettings]="legendSettings" [theme]="theme">
+  <e-series-collection>
+    @for (series of lineCustomSeries; track $index) {
+    <e-series [type]="series.type" [dataSource]="series.dataSource" [xName]="series.xName" [yName]="series.yName"
+      [name]="series.name" [width]="series.width" [marker]="series.marker">
+    </e-series>
+    }
+  </e-series-collection>
+</ejs-chart>

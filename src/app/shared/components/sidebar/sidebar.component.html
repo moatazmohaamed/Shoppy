@@ -1,0 +1,39 @@
+<div class="ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10" >
+  <div class="flex justify-between items-center">
+    <a routerLink="/" (click)="handleCloseSideBar()"
+      class="items-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-tight dark:text-white text-slate-900">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 4h16v2H4V4zm0 4h16v12H4V8z" />
+      </svg>
+      <span>Shoppy</span>
+    </a>
+
+    <button type="button" (click)="toggleMenu()" [style.color]="currentColor"
+      class="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block md:hidden" title="Menu">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+      
+    </button>
+  </div>
+
+  <div class="mt-10">
+    @for (item of links; track item.title) {
+    <p class="text-gray-400 dark:text-gray-400 m-3 mt-4 uppercase">
+      {{ item.title }}
+    </p>
+
+    @for (link of item.links; track link.name) {
+    <a routerLink="/{{ link.name }}" routerLinkActive="bg-gray-600" [routerLinkActiveOptions]="{ exact: true }"
+      [style.background-color]="router.isActive('/' + link.name, true) ? currentColor : ''"
+      [class]="router.isActive('/' + link.name, true)
+        ? 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2'
+        : 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2'">
+      <lucide-icon [size]="24" [name]="link.icon"></lucide-icon>
+      <span class="capitalize">{{ link.name }}</span>
+    </a>
+    }
+    }
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<button [class]="'btn ' + size" [style.backgroundColor]="bgColor" [style.color]="color"
+  [style.borderRadius]="borderRadius" [style.width]="width === 'full' ? '100%' : width"
+  [style.--hover-bg-color]="bgHoverColor">
+  @if (icon) {
+
+  <span class="btn-icon">{{ icon }}</span>
+
+  }
+  <span class="btn-text">{{ text }}</span>
+</button>

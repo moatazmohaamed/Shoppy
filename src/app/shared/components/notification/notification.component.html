@@ -1,0 +1,29 @@
+<div
+  [class]="isOpen ? 'hidden': 'nav-item block absolute right-5 md:right-40 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96 shadow-lg' ">
+  <div class="flex justify-between items-center">
+    <div class="flex gap-3">
+      <p class="font-semibold text-lg dark:text-gray-200">Notifications</p>
+      <button type="button" class="text-white text-xs rounded p-1 px-2 bg-orange-theme">5 New</button>
+    </div>
+    <lucide-icon class="cursor-pointer bg-body-secondary" [size]="24" [name]="X" (click)="toggle()"></lucide-icon>
+
+  </div>
+
+  <div class="mt-5">
+    @for (item of chatData; track item) {
+    <div class="flex items-center leading-8 gap-5 border-b border-color p-3">
+      <img class="rounded-full h-10 w-10" [src]="item.image" [alt]="item.message" />
+      <div>
+        <p class="font-semibold dark:text-gray-200">{{ item.message }}</p>
+        <p class="text-gray-500 text-sm dark:text-gray-400">{{ item.desc }}</p>
+      </div>
+    </div>
+    }
+
+    <div class="mt-5">
+      <app-button color="white" [bgColor]="(currentColor | async) || '#000'" text="See all notifications"
+        borderRadius="10px" width="full">
+      </app-button>
+    </div>
+  </div>
+</div>

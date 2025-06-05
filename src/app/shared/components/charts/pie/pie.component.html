@@ -1,0 +1,13 @@
+<ejs-accumulationchart [id]="id" [legendSettings]="{ visible: legendVisibility, background: 'white' }" [height]="height"
+  [background]="backgroundColor" [tooltip]="{ enable: true }">
+  <e-accumulation-series-collection>
+    <e-accumulation-series [dataSource]="data" type="Pie" xName="x" yName="y" name="Sale" [radius]="'70%'"
+      [innerRadius]="'40%'" [startAngle]="0" [endAngle]="360" [explode]="true" [explodeIndex]="2"
+      [explodeOffset]="'10%'" [dataLabel]="{
+        visible: true,
+        name: 'text',
+        position: 'Inside',
+        font: { fontWeight: '600', color: '#fff' }
+      }"></e-accumulation-series>
+  </e-accumulation-series-collection>
+</ejs-accumulationchart>

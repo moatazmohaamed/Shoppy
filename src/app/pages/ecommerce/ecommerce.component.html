@@ -1,0 +1,263 @@
+<div class="mt-20 md:mt-10">
+  <div class="flex flex-wrap lg:flex-nowrap justify-center">
+    <div
+      class="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl w-full lg:w-80 p-8 pt-9 m-3 bg-no-repeat bg-cover bg-center"
+      [ngStyle]="{ 'background-image': 'url(welcome-bg.svg)' }">
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="font-bold text-gray-400">Earnings</p>
+          <p class="text-2xl">$63,448.78</p>
+        </div>
+        <button type="button" [style.backgroundColor]="currentColor"
+          class="text-2xl opacity-0.9 text-white hover:drop-shadow-xl rounded-full p-4">
+          <lucide-icon class="cursor-pointer bg-body-secondary" [size]="24" [name]="DollarSign"></lucide-icon>
+        </button>
+      </div>
+      <div class="mt-6">
+        <app-button color="white" [bgColor]="(currentColor | async) || '#000'" text="Download" borderRadius="10px" />
+      </div>
+    </div>
+    <div class="flex m-3 flex-wrap justify-center gap-1 items-center">
+      @for (item of earningData; track item.title) {
+      <div class="bg-white h-44 dark:text-gray-200 dark:bg-secondary-dark-bg w-[20%] md:w-56 p-4 pt-9 rounded-2xl">
+        <button type="button" [style.color]="item.iconColor" [style.backgroundColor]="item.iconBg"
+          class="text-2xl opacity-0.9 rounded-full p-4 hover:drop-shadow-xl">
+          <lucide-icon class="cursor-pointer bg-body-secondary" [size]="24" [name]="item.icon"></lucide-icon>
+        </button>
+        <p class="mt-3">
+          <span class="text-lg font-semibold">{{ item.amount }}</span>
+          <span class="text-sm" [class]="'text-' + item.pcColor + ' ml-2'">
+            {{ item.percentage }}
+          </span>
+        </p>
+        <p class="text-sm text-gray-400 mt-1">{{ item.title }}</p>
+      </div>
+      }
+    </div>
+  </div>
+
+  <div class="flex gap-10 flex-wrap justify-center">
+    <div class="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg m-3 p-4 rounded-2xl md:w-780">
+      <div class="flex justify-between">
+        <p class="font-semibold text-xl">Revenue Updates</p>
+        <div class="flex items-center gap-1">
+          <p class="flex items-center text-gray-600 hover:drop-shadow-xl">
+            <span>
+              <lucide-icon [size]="50" [name]="Dot"> </lucide-icon>
+            </span>
+            <span>Expense</span>
+          </p>
+          <p class="flex items-center text-green-400 hover:drop-shadow-xl">
+            <span>
+              <lucide-icon [size]="50" [name]="Dot" color="black">
+              </lucide-icon>
+            </span>
+            <span>Budget</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 justify-center items-center overflow-hidden gap-4">
+        <div class="border-r-1 border-color m-4 pr-4 md:pr-10 w-full md:w-auto">
+          <div>
+            <p>
+              <span class="text-3xl font-semibold">$93,438</span>
+              <span class="p-1.5 hover:drop-shadow-xl cursor-pointer rounded-full text-white bg-green-400 ml-3 text-xs">
+                23%
+              </span>
+            </p>
+            <p class="text-gray-500 mt-1">Budget</p>
+          </div>
+          <div class="mt-8">
+            <p class="text-3xl font-semibold">$48,487</p>
+            <p class="text-gray-500 mt-1">Expense</p>
+          </div>
+
+          <div class="mt-5">
+            <app-sparkline [currentColor]="(currentColor | async) || '#000'" id="line-sparkLine" type="Line"
+              height="80px" width="100%" [data]="sparklineAreaData" [color]="(currentColor | async) || '#000'">
+            </app-sparkline>
+          </div>
+          <div class="mt-10">
+            <app-button color="white" [bgColor]="(currentColor | async) || '#000'" text="Download Report"
+              borderRadius="10px" />
+          </div>
+        </div>
+        <div class="w-full">
+          <app-stacked [width]="'100%'" [height]="'100%'" [isDarkMode]="(currentMode | async) === 'Dark'"></app-stacked>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="rounded-2xl md:w-400 p-4 m-3" [style.backgroundColor]="(currentColor | async) || '#000'">
+        <div class="flex justify-between items-center">
+          <p class="font-semibold text-white text-2xl">Earnings</p>
+          <div>
+            <p class="text-2xl text-white font-semibold mt-8">$63,448.78</p>
+            <p class="text-gray-200">Monthly revenue</p>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <app-sparkline [currentColor]="(currentColor | async) || '#000'" id="column-sparkLine" height="100px"
+            type="Column" [data]="sparklineAreaData" width="320" color="rgb(242, 252, 253)" />
+        </div>
+      </div>
+
+      <div
+        class="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl md:w-400 p-8 m-3 flex justify-center items-center gap-10">
+        <div>
+          <p class="text-2xl font-semibold">$43,246</p>
+          <p class="text-gray-400">Yearly sales</p>
+        </div>
+
+        <div class="w-40 ">
+          <app-pie [id]="'pie-chart'" [data]="ecomPieChartData" [legendVisibility]="true"
+            [isDarkMode]="(currentMode | async) === 'Dark'" [height]="'200px'">
+            >
+          </app-pie>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex gap-10 m-4 flex-wrap justify-center">
+    <div class="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl">
+      <div class="flex justify-between items-center gap-2">
+        <p class="text-xl font-semibold">Recent Transactions</p>
+        <app-dropdown />
+      </div>
+      <div class="mt-10 w-72 md:w-400">
+        @for (item of recentTransactions; track item.title) {
+        <div class="flex justify-between mt-4">
+          <div class="flex gap-4">
+            <button type="button" [style.color]="item.iconColor" [style.backgroundColor]="item.iconBg"
+              class="text-2xl rounded-lg p-4 hover:drop-shadow-xl">
+              <lucide-icon [size]="24" [name]="item.icon"> </lucide-icon>
+            </button>
+            <div>
+              <p class="text-md font-semibold">{{ item.title }}</p>
+              <p class="text-sm text-gray-400">{{ item.desc }}</p>
+            </div>
+          </div>
+          <p [class]="'text-' + item.pcColor">{{ item.amount }}</p>
+        </div>
+        }
+      </div>
+      <div class="flex justify-between items-center mt-5 border-t-1 border-color">
+        <div class="mt-3">
+          <app-button color="white" [bgColor]="(currentColor | async) || '#000'" text="Add" borderRadius="10px" />
+        </div>
+        <p class="text-gray-400 text-sm">36 Recent Transactions</p>
+      </div>
+    </div>
+    <div class="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl w-[100%] md:w-760">
+      <div class="flex justify-between items-center gap-2 mb-10">
+        <p class="text-xl font-semibold">Sales Overview</p>
+        <app-dropdown />
+      </div>
+      <app-line-charts [currentMode]="(currentMode | async) || 'Light'" [lineCustomSeries]="lineCustomSeries"
+        [LinePrimaryXAxis]="LinePrimaryXAxis" [LinePrimaryYAxis]="LinePrimaryYAxis">
+      </app-line-charts>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap justify-center">
+    <div class="md:w-400 bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl p-6 m-3">
+      <div class="flex justify-between">
+        <p class="text-xl font-semibold">Weekly Stats</p>
+        <button type="button" class="text-xl font-semibold text-gray-500">
+        </button>
+      </div>
+
+      <div class="mt-10">
+        @for (item of weeklyStats; track item.title) {
+        <div class="flex justify-between mt-4 w-full">
+          <div class="flex gap-4">
+            <button type="button" [style.background]="item.iconBg"
+              class="text-2xl hover:drop-shadow-xl text-white rounded-full p-3">
+              <lucide-icon [size]="24" [name]="item.icon"> </lucide-icon>
+            </button>
+            <div>
+              <p class="text-md font-semibold">{{ item.title }}</p>
+              <p class="text-sm text-gray-400">{{ item.desc }}</p>
+            </div>
+          </div>
+          <p [class]="'text-' + item.pcColor">{{ item.amount }}</p>
+        </div>
+        }
+        <div class="mt-4">
+          <app-sparkline [currentColor]="currentColor" id="area-sparkLine" height="160px" type="Area"
+            [data]="sparklineAreaData" width="320" color="rgb(242, 252, 253)" />
+        </div>
+      </div>
+    </div>
+    <div class="w-400 bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl p-6 m-3">
+      <div class="flex justify-between">
+        <p class="text-xl font-semibold">MedicalPro Branding</p>
+        <button type="button" class="text-xl font-semibold text-gray-400">
+        </button>
+      </div>
+      <p
+        class="text-xs cursor-pointer hover:drop-shadow-xl font-semibold rounded-lg w-24 bg-orange-400 py-0.5 px-2 text-gray-200 mt-10">
+        16 APR, 2021
+      </p>
+
+      <div class="flex gap-4 border-b-1 border-color mt-6">
+        @for (item of medicalproBranding.data; track item.title) {
+        <div class="border-r-1 border-color pr-4 pb-2">
+          <p class="text-xs text-gray-400">{{ item.title }}</p>
+          <p class="text-sm">{{ item.desc }}</p>
+        </div>
+        }
+      </div>
+      <div class="border-b-1 border-color pb-4 mt-2">
+        <p class="text-md font-semibold mb-2">Teams</p>
+        <div class="flex gap-4">
+          @for (item of medicalproBranding.teams; track item.name) {
+          <p [style.background]="item.color"
+            class="cursor-pointer hover:drop-shadow-xl text-white py-0.5 px-3 rounded-lg text-xs">
+            {{ item.name }}
+          </p>
+          }
+        </div>
+      </div>
+      <div class="mt-2">
+        <p class="text-md font-semibold mb-2">Leaders</p>
+        <div class="flex gap-4">
+          @for (item of medicalproBranding.leaders; track $index) {
+          <img class="rounded-full w-8 h-8" [src]="item.image" alt="" />
+          }
+        </div>
+      </div>
+      <div class="flex justify-between items-center mt-5 border-t-1 border-color">
+        <div class="mt-3">
+          <app-button color="white" [bgColor]="(currentColor | async) || '#000'" text="Add" borderRadius="10px" />
+        </div>
+        <p class="text-gray-400 text-sm">36 Recent Transactions</p>
+      </div>
+    </div>
+    <div class="w-400 bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl p-6 m-3">
+      <div class="flex justify-between">
+        <p class="text-xl font-semibold">Daily Activities</p>
+        <button type="button" class="text-xl font-semibold text-gray-500">
+        </button>
+      </div>
+      <div class="mt-10 space-y-4 my-11">
+        <img class="md:w-96 h-50" src="product9.jpg" alt="" />
+        <div class="mt-8">
+          <p class="font-semibold text-lg">React 18 coming soon!</p>
+          <p class="text-gray-400">By Johnathan Doe</p>
+          <p class="mt-8 text-sm text-gray-400">
+            This will be the small description for the news you have shown here.
+            There could be some great info.
+          </p>
+          <div class="mt-3">
+            <app-button color="white" [bgColor]="(currentColor | async) || '#000'" text="Read More"
+              borderRadius="10px" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

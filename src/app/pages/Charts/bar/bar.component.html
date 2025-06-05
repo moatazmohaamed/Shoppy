@@ -1,0 +1,31 @@
+<!-- bar-chart.component.html -->
+<div
+  class="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl"
+>
+  <app-header category="Charts" title="Bar"></app-header>
+  <div class="w-full">
+    <ejs-chart
+      id="charts"
+      [primaryXAxis]="primaryXAxis"
+      [primaryYAxis]="primaryYAxis"
+      [chartArea]="chartArea"
+      [tooltip]="tooltip"
+      [legendSettings]="legendSettings"
+    >
+      <e-series-collection>
+        @for (series of customSeries; track series.name) {
+        <e-series
+          [dataSource]="series.dataSource"
+          [xName]="series.xName"
+          [yName]="series.yName"
+          [name]="series.name"
+          [type]="series.type"
+          [marker]="series.marker"
+          [width]="series.width"
+          [opacity]="series.opacity"
+        ></e-series>
+        }
+      </e-series-collection>
+    </ejs-chart>
+  </div>
+</div>

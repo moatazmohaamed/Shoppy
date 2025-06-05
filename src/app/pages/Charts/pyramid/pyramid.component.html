@@ -1,0 +1,39 @@
+<div
+  class="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl"
+>
+  <app-header category="Charts" title="Pyramid"></app-header>
+  <div>
+    <ejs-accumulationchart
+      id="pyramidcontainer"
+      #pyramid
+      style="display: block; width: 92%"
+      [legendSettings]="legendSettings"
+      [tooltip]="tooltip"
+      [title]="title"
+      (resized)="onChartResized($event)"
+    >
+      <e-accumulation-series-collection>
+        <e-accumulation-series
+          name="Food"
+          [dataSource]="data"
+          xName="Foods"
+          yName="Calories"
+          [neckWidth]="neckWidth"
+          [gapRatio]="gapRatio"
+          [emptyPointSettings]="emptyPointSettings"
+          width="45%"
+          height="80%"
+          [explode]="explode"
+          [dataLabel]="dataLabel"
+          type="Pyramid"
+        >
+        </e-accumulation-series>
+      </e-accumulation-series-collection>
+    </ejs-accumulationchart>
+  </div>
+</div>
+<style>
+  .control-section {
+    min-height: 450px;
+  }
+</style>

@@ -1,0 +1,42 @@
+<div
+  class="m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl overflow-hidden dark:bg-secondary-dark-bg"
+>
+  <app-header category="App" title="Color Picker"></app-header>
+  <div id="inline-control">
+    <div class="text-center">
+      <div id="preview"></div>
+    </div>
+    <div
+      id="inline-content"
+      class="flex justify-center items-center gap-20 flex-wrap my-10"
+    >
+      <div>
+        <h4 class="text-2xl font-semibold mt-2 mb-4">Inline Palette</h4>
+        <input
+          ejs-colorpicker
+          #inlinePalette
+          id="inline-color-palette"
+          type="color"
+          mode="Palette"
+          [modeSwitcher]="ctrlSwitch"
+          inline="true"
+          [showButtons]="ctrlSwitch"
+          (change)="change($event)"
+        />
+      </div>
+      <div>
+        <h4 class="text-2xl font-semibold mt-2 mb-4">Inline Picker</h4>
+        <input
+          ejs-colorpicker
+          #inlinePicker
+          id="inline-color-picker"
+          type="color"
+          [modeSwitcher]="ctrlSwitch"
+          inline="true"
+          [showButtons]="ctrlSwitch"
+          (change)="change($event)"
+        />
+      </div>
+    </div>
+  </div>
+</div>

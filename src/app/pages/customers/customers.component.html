@@ -1,0 +1,28 @@
+<div
+  class="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl"
+>
+  <app-header category="Page" title="Customers" />
+  <ejs-grid
+    [dataSource]="customersData"
+    [enableHover]="false"
+    [allowPaging]="true"
+    [pageSettings]="pageSettings"
+    [selectionSettings]="selectionSettings"
+    [editSettings]="editSettings"
+    [allowSorting]="true"
+  >
+    <e-columns>
+      <e-column
+        *ngFor="let item of customersGrid"
+        [field]="item.field"
+        [headerText]="item.headerText"
+        [width]="item.width"
+        [textAlign]="item.textAlign"
+        [format]="item.format"
+        [type]="item.type"
+      >
+        <e-column field="CustomerName"> </e-column>
+      </e-column>
+    </e-columns>
+  </ejs-grid>
+</div>
